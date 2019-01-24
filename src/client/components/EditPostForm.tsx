@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export interface EditPostFormProperties
 {
+  initialState?: EditPostFormState;
   onSaveButtonClick: (state: EditPostFormState) => void;
 };
 
@@ -19,11 +20,18 @@ export class EditPostForm extends React.Component<EditPostFormProperties, EditPo
   {
     super(props);
 
-    this.state = {
-      titleTextboxValue: '',
-      contentTextboxValue: '',
-      tagsTextboxValue: ''
-    };
+    if (this.props.initialState == null)
+    {
+      this.state = {
+        titleTextboxValue: '',
+        contentTextboxValue: '',
+        tagsTextboxValue: ''
+      };
+    }
+    else
+    {
+      this.state = this.props.initialState;
+    }
   }
 
   private onTitleTextboxChange(e: React.ChangeEvent)

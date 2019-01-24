@@ -31,5 +31,5 @@ export function NewPostPage(props: NewPostPageProperties)
     await api.addBlogPost(post);
 
     props.history.push('/blog/' + post.id);
-  }} />
+  }} />;
 }
