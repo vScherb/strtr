@@ -2,6 +2,7 @@ import { BlogPost } from '../types';
 
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as moment from 'moment';
 
 export interface BlogPostItemProperties
 {
@@ -19,7 +20,7 @@ export function BlogPostItem(props: BlogPostItemProperties)
     <a href="/" className="btn btn-link btn-sm">
       <FontAwesomeIcon icon="edit" />
     </a>
-    <span className="blog-post-meta">{post.created}</span>
+    <span className="blog-post-meta">{moment(post.created).format('LLLL')}</span>
     <div>
       {post.tags.join(', ')}
     </div>
