@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export function App()
 {
   return <>
-    <AppHeader />
+    <AppHeader blogTitle="Geiler IPI Blog" />
 
     <main role="main" className="container">
       <div className="row">
