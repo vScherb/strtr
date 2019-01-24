@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+export interface AppHeaderProperties
+{
+  blogTitle: string;
+};
+
 export function AppHeader()
 {
   return <div className="container">
