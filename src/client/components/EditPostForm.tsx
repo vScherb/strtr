@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+export interface EditPostFormProperties
+{
+  onSaveButtonClick: (state: EditPostFormState) => void;
+};
+
 export interface EditPostFormState
 {
   titleTextboxValue: string;
@@ -8,16 +13,16 @@ export interface EditPostFormState
   tagsTextboxValue: string;
 };
 
-export class EditPostForm extends React.Component<{}, EditPostFormState>
+export class EditPostForm extends React.Component<EditPostFormProperties, EditPostFormState>
 {
   constructor(props: any)
   {
     super(props);
 
     this.state = {
-      titleTextboxValue: 'mein title',
-      contentTextboxValue: 'toller content',
-      tagsTextboxValue: 'foor, bar'
+      titleTextboxValue: '',
+      contentTextboxValue: '',
+      tagsTextboxValue: ''
     };
   }
 
@@ -67,7 +72,10 @@ export class EditPostForm extends React.Component<{}, EditPostFormState>
 
       <div className="row">
         <div className="col-md-12 text-right">
-          <button type="button" className="btn btn-success" >
+          <button type="button" className="btn btn-success" onClick={() =>
+          {
+            this.props.onSaveButtonClick(this.state);
+          }}>
             <FontAwesomeIcon icon="save" />&nbsp;Save
           </button>
         </div>
