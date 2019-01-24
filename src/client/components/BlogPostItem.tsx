@@ -1,8 +1,13 @@
 import { BlogPost } from '../types';
+import { ContentTagStrip } from './';
 
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import * as showdown from 'showdown';
 import * as moment from 'moment';
+
+const markdownConverter = new showdown.Converter();
 
 export interface BlogPostItemProperties
 {
@@ -12,6 +17,7 @@ export interface BlogPostItemProperties
 export function BlogPostItem(props: BlogPostItemProperties)
 {
   const { post } = props;
+  const content = markdownConverter.makeHtml(post.content);
 
   return <div className="blog-post">
     <h2 className="blog-post-title">
@@ -21,9 +27,7 @@ export function BlogPostItem(props: BlogPostItemProperties)
       <FontAwesomeIcon icon="edit" />
     </a>
     <span className="blog-post-meta">{moment(post.created).format('LLLL')}</span>
-    <div>
-      {post.tags.join(', ')}
-    </div>
-    <div>{post.content}</div>
+    <ContentTagStrip tags={post.tags} />
+    <div dangerouslySetInnerHTML={{ __html: content }}></div>
   </div>;
 };

@@ -16,7 +16,7 @@ export class IndexPage extends React.Component<{}, {}>
       {
         id: 123,
         title: 'Das ist mein Title',
-        content: 'Das ist mein Content',
+        content: '*Das* ist mein **Content**',
         created: new Date(),
         tags: ['sharepoint', 'javascript']
       }
