@@ -1,3 +1,5 @@
+import { AppHeader } from './';
+
 // 3rd party
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -5,22 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export function App()
 {
   return <>
-    <div className="container">
-      <header className="blog-header py-3">
-        <div className="row flex-nowrap justify-content-between align-items-center">
-          <div className="col-4 pt-1">
-          </div>
-          <div className="col-4 text-center">
-            <a href="/" className="blog-header-logo text-dark">My Blog</a>
-          </div>
-          <div className="col-4 d-flex justify-content-end align-items-center">
-            <a href="/new" className="btn btn-sm btn-success">
-              <FontAwesomeIcon icon="plus" />
-            </a>
-          </div>
-        </div>
-      </header>
-    </div>
+    <AppHeader />
 
     <main role="main" className="container">
       <div className="row">
@@ -39,9 +26,7 @@ export function App()
               <a href="/" className="badge badge-primary mr-1">Tag Two</a>
               <a href="/" className="badge badge-primary mr-1">Tag Three</a>
             </div>
-            <div>
-              Blog Post Text
-            </div>
+            <div>Blog Post Text</div>
           </div>
 
         </div>
