@@ -4,48 +4,68 @@ import { BlogPostItem } from '../components';
 
 import * as React from 'react';
 
-export class IndexPage extends React.Component<{}, {}>
+export interface IndexPageState
+{
+  loading: boolean;
+  displayedPosts: BlogPost[];
+};
+
+export class IndexPage extends React.Component<{}, IndexPageState>
 {
   constructor(props: any)
   {
     super(props);
 
+    this.state = {
+      loading: false,
+      displayedPosts: []
+    };
+  }
+
+  componentDidMount()
+  {
     this.init();
   }
 
   async init()
   {
-    const dataSource: BlogPost[] = [
-      {
-        id: 123,
-        title: 'Das ist mein Title',
-        content: '*Das* ist mein **Content**',
-        created: new Date(),
-        tags: ['sharepoint', 'javascript']
-      },
-      {
-        id: 456,
-        title: 'Mein zweiter Post hier',
-        content: '## Markdown rockt die Huette',
-        created: new Date(),
-        tags: ['sharepoint', 'javascript', 'foo', 'bar']
-      }
-    ];
+    this.setState({
+      loading: true
+    });
 
-    for (const post of dataSource)
-    {
-      await api.addBlogPost(post);
-    }
+    const posts = await api.getAllBlogPosts();
 
-    console.log(await api.getAllBlogPosts());
+    this.setState({
+      loading: false,
+      displayedPosts: posts
+    });
   }
 
   render()
   {
+    const { state } = this;
+    let content = null;
 
+    if (state.loading)
+    {
+      content = <h1>Loading posts...</h1>;
+    }
+    else
+    {
+      if (state.displayedPosts.length === 0)
+      {
+        content = <h1>No posts found.</h1>;
+      }
+      else
+      {
+        content = state.displayedPosts.map((post, i) => <BlogPostItem
+          key={i}
+          post={post} />);
+      }
+    }
 
     return <div>
-      {/* {dataSource.map((post, i) => <BlogPostItem key={i} post={post} />)} */}
+      {content}
     </div>;
   }
 };
