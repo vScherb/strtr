@@ -2,6 +2,7 @@ import { BlogPost } from '../types';
 import { ContentTagStrip } from './';
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as showdown from 'showdown';
@@ -21,11 +22,11 @@ export function BlogPostItem(props: BlogPostItemProperties)
 
   return <div className="blog-post">
     <h2 className="blog-post-title">
-      <a href="/">{post.title}</a>
+      <Link to={'/blog/' + post.id}>{post.title}</Link>
     </h2>
-    <a href="/" className="btn btn-link btn-sm">
+    <Link to={`/blog/${post.id}/edit`} className="btn btn-link btn-sm">
       <FontAwesomeIcon icon="edit" />
-    </a>
+    </Link>
     <span className="blog-post-meta">{moment(post.created).format('LLLL')}</span>
     <ContentTagStrip tags={post.tags} />
     <div dangerouslySetInnerHTML={{ __html: content }}></div>

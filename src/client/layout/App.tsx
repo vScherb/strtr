@@ -1,5 +1,5 @@
 import { AppHeader, AppSidebar, AppFooter } from './';
-import { IndexPage } from '../pages';
+import { IndexPage, SinglePostPage } from '../pages';
 
 // 3rd party
 import * as React from 'react';
@@ -16,6 +16,7 @@ export function App()
 
           <Switch>
             <Route exact path='/' component={IndexPage} />
+            <Route exact path='/blog/:id' component={SinglePostPage} />
             <Route exact path='/new' render={() => <div>new page</div>} />
           </Switch>
 
