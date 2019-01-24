@@ -76,7 +76,9 @@ export class EditPostPage extends React.Component<EditPostPageProperties, EditPo
           tagsTextboxValue: state.post.tags.join(', ')
         };
 
-        content = <BlogPostItem post={state.post} />;
+        content = <EditPostForm
+          initialState={initialState}
+          onSaveButtonClick={async (state) => { console.log(state); }} />;
       }
     }
 
